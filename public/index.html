@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Compartilhe seu código</title>
+</head>
+<body>  
+
+    <form >
+        <h1>Compartilhe seu codigo</h1>
+        <input type="text" id="title-field" placeholder="Titulo">
+        <textarea id="code-field" placeholder="Seu codigo aqui."></textarea>
+        <button type="submit" id="btn-submit">Enviar</button>
+    </form>
+    
+    <section id="cards">
+
+    </section>
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+   
+   <script type="text/javascript">
+        const socket = io('http://localhost:3000')
+        const submit = document.querySelector('#btn-submit')
+        
+        function renderCode(data){         
+            let section = document.querySelector('#cards');
+            let card_response_output = document.createElement('div')
+            let pre = document.createElement('pre')
+      
+            pre.innerText = data.code 
+
+            card_response_output.innerHTML = `<h1>${data.title}</h1>`
+            card_response_output.appendChild(pre)
+
+            section.appendChild(card_response_output);
+        }
+
+
+        socket.on('previousCodes', codes => {
+            codes.forEach(code => {
+                renderCode(code)
+            })
+        })
+
+
+        socket.on('receivedCode', data => {
+            renderCode(data)
+        })
+
+
+        submit.addEventListener('click', (e) => {
+            const title = document.querySelector('#title-field').value 
+            const code = document.querySelector('#code-field').value
+            
+            e.preventDefault()
+            
+            if (code.length > 0 ) {
+                let data = {
+                    title: title,
+                    code: code
+                }  
+
+                renderCode(data)
+                socket.emit('sendData', data)
+            }
+        })
+    </script>
+</body>
+</html>

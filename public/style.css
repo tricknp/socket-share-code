@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto|Source+Code+Pro:200&display=swap');
+
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    outline: none;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+    background: rgb(86, 126, 163);
+}
+
+form > h1 {
+    color: #fff;
+    font-size: 1.7em;
+}
+
+input, textarea {
+    min-width: 350px;
+    max-width: 350px;
+    margin-top: 1%;
+    padding: .5em .3em;
+    font-size: 1em;
+    border-radius: 3px;
+    border: solid 1px #777;
+    color: #777;
+}
+
+textarea{
+    height: 150px;
+    resize: none;
+}
+
+button {
+    width: 350px;
+    margin-top: 1%;
+    font-size: .9em;
+    padding: .5em .3em;
+    border-radius: 3px;
+    border: solid 3px #fff;
+    color: #777;
+}
+
+button:hover{
+    border: solid 3px rgb(99, 164, 224);
+    color: rgb(99, 164, 224);
+    transition: all .3s ease-in-out; 
+    cursor: pointer;
+}
+
+
+section {
+    padding: 0 3em;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+}
+
+section > div {
+    width: 100%;
+    margin-top: 7%;
+}
+
+section > div:first-child() {
+    margin-top: 1%;
+}
+
+section > div > pre {
+    font-family: 'Source Code Pro', monospace;
+    background: rgb(170, 167, 167);
+    border-radius: 3px;
+    padding: 15px;
+    color: #fff;
+    font-size: .75em;
+}
+
+section > div > h1 {
+    text-transform: uppercase;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1em;
+    width: 100%;
+    text-align: left;
+}
